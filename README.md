@@ -1,4 +1,4 @@
-# [ Library ] Front End React
+# [ Fake Twitter ] Front End React
 
 ## Requisitos
 
@@ -8,6 +8,6 @@ Npm [6.4.1](https://www.npmjs.com/package/npm/v/6.4.1)
 
 ## Passos
 
-1. Faça o clone/download deste repositório: `git clone https://hugofv@bitbucket.org/HugoFerDev/aktie-now.git`
+1. Faça o clone/download deste repositório: `git clone https://github.com/Hugofv/fake-twitter-app.git`
 2. Instale as dependências: `yarn install` or `npm install`
 3. Start a aplicação: `yarn start` ou `npm start`

@@ -6,33 +6,32 @@ import {
   DialogActions,
 } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
-import ProfilePicture from 'profile-picture';
 
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { CoverPicture, BoxEdit } from './styles';
 import { Edit } from '@material-ui/icons';
+import ProfilePicture from '../ProfilePicture';
 
 const Header = () => {
   const { t } = useTranslation();
-  const profilePictureRef = useRef();
+  const refPicture = useRef();
   const [open, setOpen] = useState(false);
 
+  /**
+   * Function for get image file to upload.
+   */
   const handleUpload = () => {
-    const PP = profilePictureRef.current;
-    const imageData = PP.getData();
-    const file = imageData.file;
-    const imageAsDataURL = PP.getImageAsDataUrl();
+    const editor = refPicture.current;
+    const canvas = editor.getImageScaledToCanvas()
+    var dataURL = canvas.toDataURL();
 
-    console.log('PP', PP);
-    console.log('imageData', imageData);
-    console.log('file', file);
-    console.log('imageAsDataURL', imageAsDataURL);
+    console.log('DataUrl', dataURL)
   };
 
   return (
     <>
-      <Grid container xs={12}>
+      <Grid container>
         <CoverPicture
           xs={12}
           img="https://i.pinimg.com/originals/2f/84/5b/2f845b8ef378f3084dc006e84c8bfcc3.jpg"
@@ -43,13 +42,9 @@ const Header = () => {
         </CoverPicture>
       </Grid>
 
-      <Dialog open={open} fullWidth>
+      <Dialog open={open} fullWidth maxWidth="lg">
         <DialogContent>
-          <ProfilePicture
-            ref={profilePictureRef}
-            useHelper={true}
-            debug={true}
-          />
+          <ProfilePicture width={1200} height={300} refPicture={refPicture} />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} variant="contained">

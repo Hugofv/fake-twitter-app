@@ -30,5 +30,7 @@
   "are_you_sure_to_delete_the_book": "Você tem certeza que deseja excluir o livro",
 
   "new_comment_success": "Comentário criado com sucesso",
-  "new_comment_error": "Falha ao criar o comentário"
+  "new_comment_error": "Falha ao criar o comentário",
+
+  "drag_or_select_image": "Arraste e solte imagem aqui ou clique para a imagem"
 }

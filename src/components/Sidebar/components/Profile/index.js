@@ -8,13 +8,7 @@ import {
   InfoBio,
   BoxEdit,
 } from './styles';
-import {
-  Room,
-  Link,
-  QueryBuilder,
-  Edit,
-} from '@material-ui/icons';
-import ProfilePicture from 'profile-picture';
+import { Room, Link, QueryBuilder, Edit } from '@material-ui/icons';
 import {
   Dialog,
   DialogActions,
@@ -22,6 +16,7 @@ import {
   DialogContent,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import ProfilePicture from '../../../ProfilePicture';
 
 const Profile = () => {
   const profile = {
@@ -33,19 +28,15 @@ const Profile = () => {
     joined: '2019-02-01',
   };
   const { t } = useTranslation();
-  const profilePictureRef = useRef();
+  const refPicture = useRef();
   const [open, setOpen] = useState(false);
 
   const handleUpload = () => {
-    const PP = profilePictureRef.current;
-    const imageData = PP.getData();
-    const file = imageData.file;
-    const imageAsDataURL = PP.getImageAsDataUrl();
+    const editor = refPicture.current;
+    const canvas = editor.getImageScaledToCanvas();
+    var dataURL = canvas.toDataURL();
 
-    console.log('PP', PP);
-    console.log('imageData', imageData);
-    console.log('file', file);
-    console.log('imageAsDataURL', imageAsDataURL);
+    console.log('DataUrl', dataURL);
   };
 
   return (
@@ -60,17 +51,17 @@ const Profile = () => {
 
       <Dialog open={open} fullWidth>
         <DialogContent>
-          <ProfilePicture
-            ref={profilePictureRef}
-            useHelper={true}
-            debug={true}
-          />
+          <ProfilePicture width={250} height={300} refPicture={refPicture} />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} variant="contained">
             {t('action.cancel')}
           </Button>
-          <Button onClick={() => handleUpload()} color="primary" variant="contained">
+          <Button
+            onClick={() => handleUpload()}
+            color="primary"
+            variant="contained"
+          >
             {t('action.upload')}
           </Button>
         </DialogActions>
