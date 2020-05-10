@@ -1,0 +1,34 @@
+{
+  "success": "Success",
+  "failed": "Falha",
+  "error": "Error",
+
+  "no_data": "No data found",
+
+  "new_category_success": "Category created with success",
+  "update_category_success": "Category updated with success",
+  "delete_category_success": "Category deleted with success",
+  "new_category_error": "Failed to create the category",
+  "update_category_error": "Failed to update the category",
+  "delete_category_error": "Failed to delete the category",
+  "are_you_sure_to_delete_the_category": "Are you sure you want to delete the category",
+
+  "new_author_success": "Author created with success",
+  "update_author_success": "Author updated with success",
+  "delete_author_success": "Author deleted with success",
+  "new_author_error": "Failed to create the author",
+  "update_author_error": "Failed to update the author",
+  "delete_author_error": "Failed to delete the author",
+  "are_you_sure_to_delete_the_author": "Are you sure you want to delete the author",
+
+  "new_book_success": "Book created with success",
+  "update_book_success": "Book updated with success",
+  "delete_book_success": "Book deleted with success",
+  "new_book_error": "Failed to create the book",
+  "update_book_error": "Failed to update the book",
+  "delete_book_error": "Failed to delete the book",
+  "are_you_sure_to_delete_the_book": "Are you sure you want to delete the book",
+
+  "new_comment_success": "Comment created with success",
+  "new_comment_error": "Failed to create the comment"
+}

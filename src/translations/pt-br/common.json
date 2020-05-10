@@ -1,0 +1,18 @@
+{
+  "actions": "Ações",
+  "author": "Autor",
+  "book": "Livro",
+  "category": "Categoria",
+  "created_at": "Data de Criação",
+  "name": "Nome",
+  "description": "Descrição",
+  "publisher": "Editora",
+  "image": "Imagem",
+  "image_url": "Imagem(URL)",
+  "year_release": "Ano de Lançamento",
+  "author_authors": "Autor(es)",
+  "comment": "Comentário",
+  "comments": "Comentários",
+  "portugues_brasil": "Português - Brasil",
+  "english": "English"
+}

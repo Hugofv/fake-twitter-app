@@ -1,0 +1,9 @@
+{
+  "name_required": "Field is required!",
+  "description_required": "Field is required!",
+  "category_required": "Field is required!",
+  "publisher_required": "Field is required!",
+  "image_required": "Field is required!",
+  "year_release_required": "Field is required!",
+  "authors_required": "Field is required!"
+}
