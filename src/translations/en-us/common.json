@@ -1,18 +1,10 @@
 {
   "actions": "Actions",
-  "author": "Author",
-  "book": "Book",
-  "category": "Category",
-  "created_at": "Created at",
   "name": "Name",
-  "description": "Description",
-  "publisher": "Publisher",
-  "image": "Image",
-  "image_url": "Image (url)",
-  "year_release": "Year Release",
-  "author_authors": "Author(s)",
-  "comment": "Comment",
-  "comments": "Comments",
+  "tweets": "Tweets",
+  "following": "Following",
+  "favorites": "Favorites",
+  "photos_videos": "Photos/Videos",
   "portugues_brasil": "Português - Brasil",
   "english": "English"
 }

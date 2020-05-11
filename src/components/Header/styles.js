@@ -1,5 +1,4 @@
-import { Icon, Grid } from '@material-ui/core';
-import { Language } from '@material-ui/icons';
+import { Grid, Paper, List } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const CoverPicture = styled(Grid)`
@@ -27,5 +26,24 @@ export const BoxEdit = styled.div`
 
   svg {
     color: #fff;
+  }
+`;
+
+export const HeaderContainer = styled.div`
+  margin-bottom: 1em;
+`;
+
+export const PaperActions = styled(Paper)`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ListStyled = styled(List)`
+  display: flex;
+
+  li {
+    padding-top: 0;
+    padding-bottom: 0;
+    cursor: pointer;
   }
 `;

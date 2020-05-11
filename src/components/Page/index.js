@@ -36,13 +36,16 @@ const Page = ({ children, title }) => {
     <div className={classes.root}>
       <Header />
       <BoxContent container spacing={2}>
-        <Grid item xs={3}>
+
+        <Grid item sm={12} lg={3} xs={3}>
           <Sidebar title={title} />
         </Grid>
-        <Grid item xs={6}>
+
+        <Grid item sm={12} lg={6} xs={6}>
           <ContainerApp data-testid="app">{children}</ContainerApp>
         </Grid>
-        <Grid item xs={3}>
+
+        <Grid item sm={12} lg={3} xs={3}>
           <Sidebar title={title} />
         </Grid>
       </BoxContent>

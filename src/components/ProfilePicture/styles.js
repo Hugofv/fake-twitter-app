@@ -7,7 +7,15 @@ export const FrameImage = styled.div`
 `;
 
 export const BoxDrag = styled.div`
-  border: 1px solid #025eab;
+  border: 2px dashed #025eab;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-weight: bold;
 `;
 
 export const BoxImage = styled.div`

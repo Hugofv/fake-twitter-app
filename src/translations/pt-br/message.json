@@ -3,34 +3,5 @@
   "failed": "Failed",
   "error": "Erro",
 
-  "no_data": "Nenhum registro foi encontrado",
-
-  "new_category_success": "Categoria criada com sucesso",
-  "update_category_success": "Categoria atualizada com sucesso",
-  "delete_category_success": "Categoria excluída com sucesso",
-  "new_category_error": "Falha ao criar a categoria",
-  "update_category_error": "Falha ao atualizar a categoria",
-  "delete_category_error": "Falha ao excluir a categoria",
-  "are_you_sure_to_delete_the_category": "Você tem certeza que deseja excluir a categoria",
-
-  "new_author_success": "Autor criado com sucesso",
-  "update_author_success": "Autor atualizado com sucesso",
-  "delete_author_success": "Autor excluído com sucesso",
-  "new_author_error": "Falha ao criar o autor",
-  "update_author_error": "Falha ao atualizar o autor",
-  "delete_author_error": "Falha ao excluir o autor",
-  "are_you_sure_to_delete_the_author": "Você tem certeza que deseja excluir o autor",
-
-  "new_book_success": "Livro criado com sucesso",
-  "update_book_success": "Livro atualizado com sucesso",
-  "delete_book_success": "Livro excluído com sucesso",
-  "new_book_error": "Falha ao criar o livro",
-  "update_book_error": "Falha ao atualizar o livro",
-  "delete_book_error": "Falha ao excluir o livro",
-  "are_you_sure_to_delete_the_book": "Você tem certeza que deseja excluir o livro",
-
-  "new_comment_success": "Comentário criado com sucesso",
-  "new_comment_error": "Falha ao criar o comentário",
-
   "drag_or_select_image": "Arraste e solte imagem aqui ou clique para a imagem"
 }

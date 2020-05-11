@@ -6,7 +6,7 @@ export const BoxImage = styled.div`
   width: 12em;
   height: 14em;
   position: relative;
-  top: -6em;
+  margin-top: -14em;
 
   &:hover {
     > div {
@@ -26,6 +26,7 @@ export const ProfileImage = styled.div`
 
 export const BoxDetail = styled.div`
   color: #555554;
+  margin-top: 2em;
 `;
 
 export const BoxIconInfo = styled.div`

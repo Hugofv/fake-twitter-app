@@ -1,8 +1,6 @@
 {
   "cancel": "Cancel",
-  "new_category": "New Category",
-  "new_author": "New Author",
-  "new_book": "New Book",
+  "upload": "Upload",
   "save": "Salvar",
   "delete": "Delete"
 }
