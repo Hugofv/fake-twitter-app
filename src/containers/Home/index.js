@@ -21,6 +21,7 @@ import {
   TweetInput,
   BoxTweetDetail,
   TweetOwner,
+  AvatarStyled,
 } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
@@ -35,13 +36,14 @@ JavascriptTimeAgo.locale(en);
 const TextSecondary = {
   style: {
     color: '#555554',
-    fontSize: '15px'
+    fontSize: '15px',
   },
 };
 
 const Home = () => {
   const { t } = useTranslation();
   const [tweetText, setTweetText] = useState('');
+  const user = useSelector(state => state.user);
   const tweet = useSelector(state => state.tweet);
   const dispatch = useDispatch();
 
@@ -106,10 +108,13 @@ const Home = () => {
           <>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar
+                <AvatarStyled
                   variant="rounded"
                   alt="Image"
-                  src={item.user.imageProfile}
+                  img={
+                    user.me.imageProfile ||
+                    require('./../../assets/img/avatar-default.png')
+                  }
                 />
               </ListItemAvatar>
               <ListItemText

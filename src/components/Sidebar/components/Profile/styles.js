@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Close } from '@material-ui/icons';
 
 export const BoxImage = styled.div`
   background: #fff;
@@ -61,3 +62,24 @@ export const BoxEdit = styled.div`
     color: #fff;
   }
 `;
+
+export const BoxName = styled.div`
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    > svg {
+      visibility: visible !important;
+    }
+  }
+
+  > svg {
+    visibility: hidden;
+    margin-left: 0.4em;
+    cursor: pointer;
+  }
+`;
+
+export const CloseIcon = styled(Close)`
+  cursor: pointer;
+`

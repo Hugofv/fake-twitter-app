@@ -42,7 +42,8 @@ const TextSecondary = {
 };
 
 const Header = () => {
-  const me = useSelector(state => state.user.me);
+  const user = useSelector(state => state.user);
+  const tweet = useSelector(state => state.tweet);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
@@ -64,15 +65,15 @@ const Header = () => {
    * Effect to close modal when the upload image is concluded.
    */
   useEffect(() => {
-    if ((!me.loading, me.success)) {
+    if ((!user.me.loading, user.me.success)) {
       setOpen(false);
     }
-  }, [me.loading, me.success]);
+  }, [user.me.loading, user.me.success]);
 
   return (
     <HeaderContainer>
       <Grid container>
-        <CoverPicture xs={12} img={me.imageCover}>
+        <CoverPicture xs={12} img={user.me.imageCover}>
           <BoxEdit onClick={() => setOpen(true)}>
             <Edit />
           </BoxEdit>
@@ -85,7 +86,7 @@ const Header = () => {
                   primaryTypographyProps={TextPrimary}
                   secondaryTypographyProps={TextSecondary}
                   primary={t('common.tweets')}
-                  secondary="1,755"
+                  secondary={tweet.collection.length}
                 />
               </ListItem>
               <ListItem>
@@ -93,7 +94,7 @@ const Header = () => {
                   primaryTypographyProps={TextPrimary}
                   secondaryTypographyProps={TextSecondary}
                   primary={t('common.photos_videos')}
-                  secondary="1,755"
+                  secondary={user.photosVideos.length}
                 />
               </ListItem>
               <ListItem>
@@ -101,7 +102,7 @@ const Header = () => {
                   primaryTypographyProps={TextPrimary}
                   secondaryTypographyProps={TextSecondary}
                   primary={t('common.following')}
-                  secondary="1,755"
+                  secondary={user.following.length}
                 />
               </ListItem>
               <ListItem>
@@ -109,7 +110,7 @@ const Header = () => {
                   primaryTypographyProps={TextPrimary}
                   secondaryTypographyProps={TextSecondary}
                   primary={t('common.followers')}
-                  secondary="1,755"
+                  secondary={user.followers.length}
                 />
               </ListItem>
             </ListStyled>

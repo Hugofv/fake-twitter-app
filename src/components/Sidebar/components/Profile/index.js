@@ -9,13 +9,16 @@ import {
   InfoName,
   InfoBio,
   BoxEdit,
+  BoxName,
+  CloseIcon,
 } from './styles';
-import { Room, Link, QueryBuilder, Edit } from '@material-ui/icons';
+import { Room, Link, QueryBuilder, Edit, Close } from '@material-ui/icons';
 import {
   Dialog,
   DialogActions,
   Button,
   DialogContent,
+  TextField,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import ProfilePicture from '../../../ProfilePicture';
@@ -29,6 +32,8 @@ const Profile = () => {
 
   const refPicture = useRef();
   const [open, setOpen] = useState(false);
+  const [nameText, setNameText] = useState('');
+  const [editableName, setEditableName] = useState(false);
 
   const handleUpload = () => {
     const editor = refPicture.current;
@@ -38,12 +43,17 @@ const Profile = () => {
     dispatch(UserActions.changeProfileImage(dataURL));
   };
 
+  const changeName = () => {
+    dispatch(UserActions.changeName(nameText));
+  }
+
   /**
-   * Effect to close modal when the upload image is concluded.
+   * Effect to close modal and editable name when the upload image or edit name is concluded.
    */
   useEffect(() => {
     if ((!me.loading, me.success)) {
       setOpen(false);
+      setEditableName(false);
     }
   }, [me]);
 
@@ -77,7 +87,24 @@ const Profile = () => {
 
       <BoxDetail>
         <InfoName>
-          <h2>{me.name}</h2>
+          {editableName ? (
+            <TextField
+              fullWidth
+              defaultValue={me.name}
+              onChange={event => setNameText(event.target.value)}
+              onBlur={changeName}
+              InputProps={{
+                endAdornment: (
+                  <CloseIcon onClick={() => setEditableName(false)} />
+                )
+              }}
+            />
+          ) : (
+            <BoxName>
+              <h2>{me.name}</h2>
+              <Edit onClick={() => setEditableName(true)} />
+            </BoxName>
+          )}
           <span>{me.nickname}</span>
         </InfoName>
 

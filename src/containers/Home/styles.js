@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextField, Divider, Typography } from '@material-ui/core';
+import { TextField, Divider, Typography, Avatar } from '@material-ui/core';
 
 export const TweetInput = styled(TextField)`
   > div {
@@ -37,4 +37,13 @@ export const BoxTweetDetail = styled.span`
 
 export const TweetOwner = styled(Typography)`
   font-weight: bold !important;
+`;
+
+export const AvatarStyled = styled.div`
+  width: 3em;
+  height: 4em;
+  background-image: ${props => `url(${props.img})`};
+  background-position: center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 `;
