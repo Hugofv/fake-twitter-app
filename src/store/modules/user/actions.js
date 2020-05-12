@@ -1,10 +1,28 @@
-import { ADD_TWEET_SUCCESS } from './types';
+import {
+  UPDATE_PROFILE_IMAGE_SUCCESS,
+  UPDATE_COVER_IMAGE_SUCCESS,
+  UPDATE_COVER_IMAGE_REQUEST,
+  UPDATE_PROFILE_IMAGE_REQUEST,
+} from './types';
 
-import api from '../../../services/api';
-
-export const tweetar = tweet => dispatch => {
+export const changeProfileImage = image => dispatch => {
   dispatch({
-    type: ADD_TWEET_SUCCESS,
-    response: tweet,
+    type: UPDATE_PROFILE_IMAGE_REQUEST,
+  });
+
+  dispatch({
+    type: UPDATE_PROFILE_IMAGE_SUCCESS,
+    response: image,
+  });
+};
+
+export const changeCoverImage = image => dispatch => {
+  dispatch({
+    type: UPDATE_COVER_IMAGE_REQUEST
+  });
+
+  dispatch({
+    type: UPDATE_COVER_IMAGE_SUCCESS,
+    response: image,
   });
 };

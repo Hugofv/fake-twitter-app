@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as TweetActions from './../../store/modules/tweet/actions';
 
 import Page from '../../components/Page';
 import {
-  TextField,
   Grid,
   CircularProgress,
   Button,
@@ -13,7 +12,6 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
-  Typography,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import {
@@ -21,16 +19,25 @@ import {
   DividerStyled,
   BoxAdornment,
   TweetInput,
+  BoxTweetDetail,
+  TweetOwner,
 } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactTimeAgo from 'react-time-ago'
-import JavascriptTimeAgo from 'javascript-time-ago'
+import ReactTimeAgo from 'react-time-ago';
+import JavascriptTimeAgo from 'javascript-time-ago';
 
-import en from 'javascript-time-ago/locale/en'
-import pt from 'javascript-time-ago/locale/pt'
+import en from 'javascript-time-ago/locale/en';
+import pt from 'javascript-time-ago/locale/pt';
 
-JavascriptTimeAgo.locale(pt)
-JavascriptTimeAgo.locale(en)
+JavascriptTimeAgo.locale(pt);
+JavascriptTimeAgo.locale(en);
+
+const TextSecondary = {
+  style: {
+    color: '#555554',
+    fontSize: '15px'
+  },
+};
 
 const Home = () => {
   const { t } = useTranslation();
@@ -108,16 +115,20 @@ const Home = () => {
               <ListItemText
                 primary={
                   <React.Fragment>
-                    <Typography
+                    <TweetOwner
                       component="span"
-                      variant="body2"
+                      variant="body1"
                       color="textPrimary"
                     >
                       {item.user.name}
-                    </Typography>
-                    <ReactTimeAgo date={item.createdAt} format='twitter'/>
+                    </TweetOwner>
+                    <BoxTweetDetail>
+                      {item.user.nickname}
+                      <ReactTimeAgo date={item.createdAt} format="twitter" />
+                    </BoxTweetDetail>
                   </React.Fragment>
                 }
+                secondaryTypographyProps={TextSecondary}
                 secondary={item.tweet}
               />
             </ListItem>

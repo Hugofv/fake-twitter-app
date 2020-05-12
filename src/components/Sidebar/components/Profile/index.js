@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import * as UserActions from './../../../../store/modules/user/actions';
+
+import React, { useRef, useState, useEffect } from 'react';
 import {
   ProfileImage,
   BoxImage,
@@ -17,18 +19,14 @@ import {
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import ProfilePicture from '../../../ProfilePicture';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
-  const profile = {
-    imageProfile: 'https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/1200px-Twitter_logo_2012.svg.png',
-    name: 'Twitter',
-    bio: 'Your official source for news, updates, and tips from twitter, Inc.',
-    nickname: '@twitter',
-    address: 'San Francisco, CA',
-    link: 'blog.twitter.com',
-    joined: '2019-02-01',
-  };
   const { t } = useTranslation();
+
+  const me = useSelector(state => state.user.me);
+  const dispatch = useDispatch();
+
   const refPicture = useRef();
   const [open, setOpen] = useState(false);
 
@@ -37,13 +35,22 @@ const Profile = () => {
     const canvas = editor.getImageScaledToCanvas();
     var dataURL = canvas.toDataURL();
 
-    console.log('DataUrl', dataURL);
+    dispatch(UserActions.changeProfileImage(dataURL));
   };
+
+  /**
+   * Effect to close modal when the upload image is concluded.
+   */
+  useEffect(() => {
+    if ((!me.loading, me.success)) {
+      setOpen(false);
+    }
+  }, [me]);
 
   return (
     <>
       <BoxImage>
-        <ProfileImage img={profile.imageProfile} />
+        <ProfileImage img={me.imageProfile} />
 
         <BoxEdit onClick={() => setOpen(true)}>
           <Edit />
@@ -70,22 +77,22 @@ const Profile = () => {
 
       <BoxDetail>
         <InfoName>
-          <h2>{profile.name}</h2>
-          <span>{profile.nickname}</span>
+          <h2>{me.name}</h2>
+          <span>{me.nickname}</span>
         </InfoName>
 
-        <InfoBio>{profile.bio}</InfoBio>
+        <InfoBio>{me.bio}</InfoBio>
 
         <BoxIconInfo>
-          <Room /> {profile.address}
+          <Room /> {me.address}
         </BoxIconInfo>
 
         <BoxIconInfo>
-          <Link /> {profile.link}
+          <Link /> {me.link}
         </BoxIconInfo>
 
         <BoxIconInfo>
-          <QueryBuilder /> {profile.joined}
+          <QueryBuilder /> {me.joined}
         </BoxIconInfo>
       </BoxDetail>
     </>
