@@ -5,8 +5,25 @@ export const ContainerApp = styled(Paper)`
   flex-grow: 1;
   padding: 20px;
   overflow: auto;
-  height: 32em;
+  max-height: 38em;
   background: #fff;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #bbbbbb;
+    border-radius: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+  }
 
   @media (min-height: 800px) {
     height: 60em;

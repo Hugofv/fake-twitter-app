@@ -1,5 +1,4 @@
 import './i18n';
-import "profile-picture/build/ProfilePicture.css"
 
 import App from './containers/App';
 import React from 'react';

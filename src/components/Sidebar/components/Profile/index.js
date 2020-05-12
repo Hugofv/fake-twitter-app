@@ -20,6 +20,7 @@ import ProfilePicture from '../../../ProfilePicture';
 
 const Profile = () => {
   const profile = {
+    imageProfile: 'https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/1200px-Twitter_logo_2012.svg.png',
     name: 'Twitter',
     bio: 'Your official source for news, updates, and tips from twitter, Inc.',
     nickname: '@twitter',
@@ -42,7 +43,7 @@ const Profile = () => {
   return (
     <>
       <BoxImage>
-        <ProfileImage img="https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/1200px-Twitter_logo_2012.svg.png" />
+        <ProfileImage img={profile.imageProfile} />
 
         <BoxEdit onClick={() => setOpen(true)}>
           <Edit />

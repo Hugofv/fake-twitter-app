@@ -1,10 +1,13 @@
 {
   "actions": "Actions",
-  "name": "Name",
-  "tweets": "Tweets",
-  "following": "Following",
+  "createdAt": "Data de Criação",
+  "english": "English",
   "favorites": "Favorites",
+  "following": "Following",
+  "name": "Name",
   "photos_videos": "Photos/Videos",
   "portugues_brasil": "Português - Brasil",
-  "english": "English"
+  "tweets": "Tweets",
+  "tweetar": "Tweetar",
+  "who_to_follow": "Who to follow"
 }

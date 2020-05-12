@@ -4,6 +4,7 @@ import React from 'react';
 import Sidebar from './../Sidebar';
 import { makeStyles, Grid } from '@material-ui/core';
 import Header from '../Header';
+import SideOption from '../SideOption';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,9 +37,8 @@ const Page = ({ children, title }) => {
     <div className={classes.root}>
       <Header />
       <BoxContent container spacing={2}>
-
         <Grid item sm={12} lg={3} xs={3}>
-          <Sidebar title={title} />
+          <Sidebar />
         </Grid>
 
         <Grid item sm={12} lg={6} xs={6}>
@@ -46,7 +46,7 @@ const Page = ({ children, title }) => {
         </Grid>
 
         <Grid item sm={12} lg={3} xs={3}>
-          <Sidebar title={title} />
+          <SideOption />
         </Grid>
       </BoxContent>
     </div>
