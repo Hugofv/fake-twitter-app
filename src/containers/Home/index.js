@@ -23,6 +23,14 @@ import {
   TweetInput,
 } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
+import ReactTimeAgo from 'react-time-ago'
+import JavascriptTimeAgo from 'javascript-time-ago'
+
+import en from 'javascript-time-ago/locale/en'
+import pt from 'javascript-time-ago/locale/pt'
+
+JavascriptTimeAgo.locale(pt)
+JavascriptTimeAgo.locale(en)
 
 const Home = () => {
   const { t } = useTranslation();
@@ -98,18 +106,19 @@ const Home = () => {
                 />
               </ListItemAvatar>
               <ListItemText
-                primary={item.user.name}
-                secondary={
+                primary={
                   <React.Fragment>
                     <Typography
                       component="span"
                       variant="body2"
                       color="textPrimary"
                     >
-                      {item.tweet}
+                      {item.user.name}
                     </Typography>
+                    <ReactTimeAgo date={item.createdAt} format='twitter'/>
                   </React.Fragment>
                 }
+                secondary={item.tweet}
               />
             </ListItem>
             <Divider component="li" />
