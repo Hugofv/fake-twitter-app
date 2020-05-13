@@ -37,15 +37,15 @@ const Page = ({ children, title }) => {
     <div className={classes.root}>
       <Header />
       <BoxContent container spacing={2}>
-        <Grid item sm={12} lg={3} xs={3}>
+        <Grid item sm={12} md={12} lg={3} xs={12}>
           <Sidebar />
         </Grid>
 
-        <Grid item sm={12} lg={6} xs={6}>
+        <Grid item sm={12} md={12} lg={6} xs={12}>
           <ContainerApp data-testid="app">{children}</ContainerApp>
         </Grid>
 
-        <Grid item sm={12} lg={3} xs={3}>
+        <Grid item sm={12} md={12} lg={3} xs={12}>
           <SideOption />
         </Grid>
       </BoxContent>

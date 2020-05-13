@@ -4,10 +4,15 @@ import { Close } from '@material-ui/icons';
 export const BoxImage = styled.div`
   background: #fff;
   border-radius: 10px;
-  width: 12em;
-  height: 14em;
   position: relative;
-  margin-top: -14em;
+  width: 6em;
+  height: 8em;
+
+  @media (min-width: 1070px) {
+    width: 12em;
+    height: 14em;
+    margin-top: -14em;
+  }
 
   &:hover {
     > div {
@@ -82,4 +87,4 @@ export const BoxName = styled.div`
 
 export const CloseIcon = styled(Close)`
   cursor: pointer;
-`
+`;

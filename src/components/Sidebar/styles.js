@@ -1,8 +1,10 @@
-import { Icon, Paper } from '@material-ui/core';
-import { Language } from '@material-ui/icons';
+import { Paper } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const BoxSidebar = styled(Paper)`
-  margin-left: 3em;
   padding: 2em;
+
+  @media (min-width: 1280px) {
+    margin-left: 3em;
+  }
 `;
