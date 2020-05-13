@@ -91,6 +91,11 @@ const Header = () => {
     }
   }, [user.loading, user.success]);
 
+  useEffect(() => {
+    dispatch(UserActions.fetchFollowing())
+    dispatch(UserActions.fetchFollower())
+  }, [])
+
   return (
     <HeaderContainer>
       <Grid container>

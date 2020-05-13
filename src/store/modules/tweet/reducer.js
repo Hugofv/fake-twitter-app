@@ -14,7 +14,6 @@ export default function tweet(state = InitialState, action) {
       return produce(state, draft => {
         draft.loading = true;
         draft.success = false;
-        draft.collection.unshift(action.response);
       });
 
     case ADD_TWEET_SUCCESS:

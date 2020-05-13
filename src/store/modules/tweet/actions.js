@@ -9,8 +9,7 @@ import moment from 'moment';
 
 export const tweetar = tweet => (dispatch, getState) => {
   dispatch({
-    type: ADD_TWEET_REQUEST,
-    response: post,
+    type: ADD_TWEET_REQUEST
   });
 
   let me = getState().user.me;

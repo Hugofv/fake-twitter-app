@@ -8,6 +8,9 @@ import {
   ADD_FOLLOWING_REQUEST,
   ADD_FOLLOWING_SUCCESS,
   GET_ME_SUCCESS,
+  FETCH_SUGGESTION_SUCCESS,
+  FETCH_FOLLOWING_SUCCESS,
+  FETCH_FOLLOWER_SUCCESS,
 } from './types';
 
 import produce from 'immer';
@@ -29,36 +32,7 @@ const InitialState = {
   followers: [],
   following: [],
   photosVideos: [],
-  suggestions: [
-    {
-      id: 'dc91a780-13e8-4f9a-a3e2-77c5950fac11',
-      imageProfile:
-        'https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/1200px-Twitter_logo_2012.svg.png',
-      imageCover:
-        'https://i.pinimg.com/originals/2f/84/5b/2f845b8ef378f3084dc006e84c8bfcc3.jpg',
-      name: 'Hugo Fernandes',
-      bio:
-        'Your official source for news, updates, and tips from twitter, Inc.',
-      nickname: '@twitter',
-      address: 'San Francisco, CA',
-      link: 'blog.twitter.com',
-      joined: '2019-02-01',
-    },
-    {
-      id: '231066c3-de60-45a2-91fd-077615845aaa',
-      imageProfile:
-        'https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/1200px-Twitter_logo_2012.svg.png',
-      imageCover:
-        'https://i.pinimg.com/originals/2f/84/5b/2f845b8ef378f3084dc006e84c8bfcc3.jpg',
-      name: 'Hugo Fernandes',
-      bio:
-        'Your official source for news, updates, and tips from twitter, Inc.',
-      nickname: '@twitter',
-      address: 'San Francisco, CA',
-      link: 'blog.twitter.com',
-      joined: '2019-02-01',
-    },
-  ],
+  suggestions: [],
 };
 
 export default function user(state = InitialState, action) {
@@ -106,6 +80,21 @@ export default function user(state = InitialState, action) {
       return produce(state, draft => {
         draft.following.push(action.response);
         draft.suggestions = newSuggestion;
+      });
+
+    case FETCH_SUGGESTION_SUCCESS:
+      return produce(state, draft => {
+        draft.suggestions = action.response;
+      });
+
+    case FETCH_FOLLOWING_SUCCESS:
+      return produce(state, draft => {
+        draft.following = action.response;
+      });
+
+    case FETCH_FOLLOWER_SUCCESS:
+      return produce(state, draft => {
+        draft.followers = action.response;
       });
 
     default:

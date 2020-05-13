@@ -12,6 +12,7 @@ import {
   TAB_FOLLOWING,
 } from '../../contants';
 import Tweets from './components/Tweets';
+import ListProfile from '../../components/ListProfile';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,14 +61,12 @@ const Home = () => {
           success={tweet.success}
         />
       </TabPanel>
-      <TabPanel value={app.currentTab} index={TAB_PHOTOS_VIDEOS}>
-        Item Two
-      </TabPanel>
+      <TabPanel value={app.currentTab} index={TAB_PHOTOS_VIDEOS}></TabPanel>
       <TabPanel value={app.currentTab} index={TAB_FOLLOWING}>
-        Item Three
+        <ListProfile users={user.following} />
       </TabPanel>
       <TabPanel value={app.currentTab} index={TAB_FOLLOWERS}>
-        Item Three
+        <ListProfile users={user.followers} />
       </TabPanel>
     </Page>
   );
