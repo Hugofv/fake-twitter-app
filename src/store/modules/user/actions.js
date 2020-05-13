@@ -74,7 +74,7 @@ export const changeName = name => (dispatch, getState) => {
   });
 };
 
-export const addFollowing = user => (dispatch, getState) => {
+export const addFollowing = user => (dispatch) => {
   dispatch({
     type: ADD_FOLLOWING_REQUEST,
   });
@@ -82,7 +82,7 @@ export const addFollowing = user => (dispatch, getState) => {
   api.put(`/users/${user.id}`, { ...user, following: true }).then(() => {
     dispatch({
       type: ADD_FOLLOWING_SUCCESS,
-      response: user,
+      response: { ...user, following: true },
     });
 
     dispatch(fetchSuggestions())
