@@ -1,20 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as TweetActions from './../../store/modules/tweet/actions';
 
 import Page from '../../components/Page';
-import {
-  Grid,
-  CircularProgress,
-  Button,
-  Divider,
-  List,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
-  Box,
-  Typography,
-} from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -32,8 +20,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -64,7 +52,13 @@ const Home = () => {
   return (
     <Page>
       <TabPanel value={app.currentTab} index={TAB_TWEETS}>
-        <Tweets tweetar={tweetar} tweet={tweet} user={user} />
+        <Tweets
+          tweetar={tweetar}
+          tweet={tweet}
+          user={user}
+          loading={tweet.loading}
+          success={tweet.success}
+        />
       </TabPanel>
       <TabPanel value={app.currentTab} index={TAB_PHOTOS_VIDEOS}>
         Item Two

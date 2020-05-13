@@ -58,7 +58,6 @@ const Profile = () => {
     }
   }, [user]);
 
-  console.log(user.me)
   return (
     <>
       <BoxImage>

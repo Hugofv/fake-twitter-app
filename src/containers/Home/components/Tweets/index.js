@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Grid,
   CircularProgress,
@@ -28,9 +28,15 @@ const TextSecondary = {
   },
 };
 
-const Tweets = ({ tweetar, tweet, user }) => {
+const Tweets = ({ tweetar, tweet, user, loading, success }) => {
   const { t } = useTranslation();
   const [tweetText, setTweetText] = useState('');
+
+  useEffect(() => {
+    if (!loading && success) {
+      setTweetText('');
+    }
+  }, [loading, success]);
 
   return (
     <>
