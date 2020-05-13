@@ -1,4 +1,5 @@
 import * as UserActions from '../../store/modules/user/actions';
+import * as AppActions from '../../store/modules/app/actions';
 
 import {
   Grid,
@@ -10,10 +11,11 @@ import {
   List,
   ListItem,
   ListItemText,
+  Tabs,
+  Tab,
 } from '@material-ui/core';
 import React, { useRef, useState, useEffect } from 'react';
 
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import {
   CoverPicture,
@@ -25,6 +27,12 @@ import {
 import { Edit } from '@material-ui/icons';
 import ProfilePicture from '../ProfilePicture';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  TAB_TWEETS,
+  TAB_PHOTOS_VIDEOS,
+  TAB_FOLLOWING,
+  TAB_FOLLOWERS,
+} from '../../contants';
 
 const TextPrimary = {
   style: {
@@ -41,14 +49,27 @@ const TextSecondary = {
   },
 };
 
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
 const Header = () => {
   const user = useSelector(state => state.user);
   const tweet = useSelector(state => state.tweet);
+  const app = useSelector(state => state.app);
+
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
   const refPicture = useRef();
   const [open, setOpen] = useState(false);
+
+  const handleChangeTab = (event, newValue) => {
+    dispatch(AppActions.changeTab(newValue));
+  };
 
   /**
    * Function for get image file to upload.
@@ -80,40 +101,59 @@ const Header = () => {
         </CoverPicture>
         <Grid xs={12}>
           <PaperActions>
-            <ListStyled>
-              <ListItem>
-                <ListItemText
-                  primaryTypographyProps={TextPrimary}
-                  secondaryTypographyProps={TextSecondary}
-                  primary={t('common.tweets')}
-                  secondary={tweet.collection.length}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primaryTypographyProps={TextPrimary}
-                  secondaryTypographyProps={TextSecondary}
-                  primary={t('common.photos_videos')}
-                  secondary={user.photosVideos.length}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primaryTypographyProps={TextPrimary}
-                  secondaryTypographyProps={TextSecondary}
-                  primary={t('common.following')}
-                  secondary={user.following.length}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primaryTypographyProps={TextPrimary}
-                  secondaryTypographyProps={TextSecondary}
-                  primary={t('common.followers')}
-                  secondary={user.followers.length}
-                />
-              </ListItem>
-            </ListStyled>
+            <Tabs
+              value={app.currentTab}
+              onChange={handleChangeTab}
+              indicatorColor="primary"
+              textColor="primary"
+              aria-label="simple tabs example"
+              centered
+            >
+              <Tab
+                label={
+                  <ListItemText
+                    primaryTypographyProps={TextPrimary}
+                    secondaryTypographyProps={TextSecondary}
+                    primary={t('common.tweets')}
+                    secondary={tweet.collection.length}
+                  />
+                }
+                {...a11yProps(TAB_TWEETS)}
+              />
+              <Tab
+                label={
+                  <ListItemText
+                    primaryTypographyProps={TextPrimary}
+                    secondaryTypographyProps={TextSecondary}
+                    primary={t('common.photos_videos')}
+                    secondary={user.photosVideos.length}
+                  />
+                }
+                {...a11yProps(TAB_PHOTOS_VIDEOS)}
+              />
+              <Tab
+                label={
+                  <ListItemText
+                    primaryTypographyProps={TextPrimary}
+                    secondaryTypographyProps={TextSecondary}
+                    primary={t('common.following')}
+                    secondary={user.following.length}
+                  />
+                }
+                {...a11yProps(TAB_FOLLOWING)}
+              />
+              <Tab
+                label={
+                  <ListItemText
+                    primaryTypographyProps={TextPrimary}
+                    secondaryTypographyProps={TextSecondary}
+                    primary={t('common.followers')}
+                    secondary={user.followers.length}
+                  />
+                }
+                {...a11yProps(TAB_FOLLOWERS)}
+              />
+            </Tabs>
           </PaperActions>
         </Grid>
       </Grid>

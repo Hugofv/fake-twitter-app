@@ -8,6 +8,13 @@ import { ThemeProvider } from '@material-ui/core';
 import history from '../../services/history';
 import store from './../../store';
 import theme from './theme';
+import JavascriptTimeAgo from 'javascript-time-ago';
+
+import en from 'javascript-time-ago/locale/en';
+import pt from 'javascript-time-ago/locale/pt';
+
+JavascriptTimeAgo.locale(pt);
+JavascriptTimeAgo.locale(en);
 
 const App = () => {
   return (

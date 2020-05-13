@@ -23,6 +23,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import ProfilePicture from '../../../ProfilePicture';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo';
 
 const Profile = () => {
   const { t } = useTranslation();
@@ -119,7 +120,7 @@ const Profile = () => {
         </BoxIconInfo>
 
         <BoxIconInfo>
-          <QueryBuilder /> {me.joined}
+          <QueryBuilder /> <ReactTimeAgo date={me.joined} format="twitter" />
         </BoxIconInfo>
       </BoxDetail>
     </>

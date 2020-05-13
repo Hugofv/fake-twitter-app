@@ -12,42 +12,49 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
+  Box,
+  Typography,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import {
-  BoxProgressTweet,
-  DividerStyled,
-  BoxAdornment,
-  TweetInput,
-  BoxTweetDetail,
-  TweetOwner,
-  AvatarStyled,
-} from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago';
-import JavascriptTimeAgo from 'javascript-time-ago';
+import {
+  TAB_TWEETS,
+  TAB_PHOTOS_VIDEOS,
+  TAB_FOLLOWERS,
+  TAB_FOLLOWING,
+} from '../../contants';
+import Tweets from './components/Tweets';
 
-import en from 'javascript-time-ago/locale/en';
-import pt from 'javascript-time-ago/locale/pt';
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-JavascriptTimeAgo.locale(pt);
-JavascriptTimeAgo.locale(en);
-
-const TextSecondary = {
-  style: {
-    color: '#555554',
-    fontSize: '15px',
-  },
-};
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
 
 const Home = () => {
   const { t } = useTranslation();
-  const [tweetText, setTweetText] = useState('');
+
   const user = useSelector(state => state.user);
   const tweet = useSelector(state => state.tweet);
+  const app = useSelector(state => state.app);
   const dispatch = useDispatch();
 
-  const tweetar = () => {
+  const tweetar = tweetText => {
     dispatch(
       TweetActions.tweetar({
         tweet: tweetText,
@@ -69,78 +76,18 @@ const Home = () => {
 
   return (
     <Page>
-      <Grid>
-        <TweetInput
-          variant="outlined"
-          placeholder={t('message.whats_happening')}
-          inputProps={{
-            maxLength: 140,
-          }}
-          fullWidth
-          multiline
-          rows={4}
-          value={tweetText}
-          onChange={event => setTweetText(event.target.value)}
-          InputProps={{
-            endAdornment: (
-              <BoxAdornment>
-                <BoxProgressTweet>
-                  <CircularProgress
-                    variant="static"
-                    size={25}
-                    thickness={5}
-                    value={(tweetText.length * 100) / 140}
-                  />
-                  {tweetText.length}/140
-                  <DividerStyled orientation="vertical" flexItem />
-                  <Button onClick={tweetar} variant="contained" color="primary">
-                    {t('common.tweetar')}
-                  </Button>
-                </BoxProgressTweet>
-              </BoxAdornment>
-            ),
-          }}
-        />
-      </Grid>
-
-      <List>
-        {tweet.collection.map(item => (
-          <>
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <AvatarStyled
-                  variant="rounded"
-                  alt="Image"
-                  img={
-                    user.me.imageProfile ||
-                    require('./../../assets/img/avatar-default.png')
-                  }
-                />
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <React.Fragment>
-                    <TweetOwner
-                      component="span"
-                      variant="body1"
-                      color="textPrimary"
-                    >
-                      {item.user.name}
-                    </TweetOwner>
-                    <BoxTweetDetail>
-                      {item.user.nickname}
-                      <ReactTimeAgo date={item.createdAt} format="twitter" />
-                    </BoxTweetDetail>
-                  </React.Fragment>
-                }
-                secondaryTypographyProps={TextSecondary}
-                secondary={item.tweet}
-              />
-            </ListItem>
-            <Divider component="li" />
-          </>
-        ))}
-      </List>
+      <TabPanel value={app.currentTab} index={TAB_TWEETS}>
+        <Tweets tweetar={tweetar} tweet={tweet} user={user} />
+      </TabPanel>
+      <TabPanel value={app.currentTab} index={TAB_PHOTOS_VIDEOS}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={app.currentTab} index={TAB_FOLLOWING}>
+        Item Three
+      </TabPanel>
+      <TabPanel value={app.currentTab} index={TAB_FOLLOWERS}>
+        Item Three
+      </TabPanel>
     </Page>
   );
 };
