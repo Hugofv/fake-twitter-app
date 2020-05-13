@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as TweetActions from './../../store/modules/tweet/actions';
 
 import Page from '../../components/Page';
@@ -17,7 +17,6 @@ import {
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactTimeAgo from 'react-time-ago';
 import {
   TAB_TWEETS,
   TAB_PHOTOS_VIDEOS,
@@ -55,24 +54,12 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const tweetar = tweetText => {
-    dispatch(
-      TweetActions.tweetar({
-        tweet: tweetText,
-        user: {
-          imageProfile:
-            'https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/1200px-Twitter_logo_2012.svg.png',
-          name: 'Twitter',
-          bio:
-            'Your official source for news, updates, and tips from twitter, Inc.',
-          nickname: '@twitter',
-          address: 'San Francisco, CA',
-          link: 'blog.twitter.com',
-          joined: '2019-02-01',
-        },
-        createdAt: '2020-01-01 02:00:50',
-      })
-    );
+    dispatch(TweetActions.tweetar(tweetText));
   };
+
+  useEffect(() => {
+    dispatch(TweetActions.fetchTweets());
+  }, []);
 
   return (
     <Page>

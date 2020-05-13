@@ -28,7 +28,7 @@ import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo';
 const Profile = () => {
   const { t } = useTranslation();
 
-  const me = useSelector(state => state.user.me);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const refPicture = useRef();
@@ -52,16 +52,17 @@ const Profile = () => {
    * Effect to close modal and editable name when the upload image or edit name is concluded.
    */
   useEffect(() => {
-    if ((!me.loading, me.success)) {
+    if ((!user.loading, user.success)) {
       setOpen(false);
       setEditableName(false);
     }
-  }, [me]);
+  }, [user]);
 
+  console.log(user.me)
   return (
     <>
       <BoxImage>
-        <ProfileImage img={me.imageProfile} />
+        <ProfileImage img={(user.me && user.me.imageProfile) || require('../../../../assets/img/avatar-default.png')} />
 
         <BoxEdit onClick={() => setOpen(true)}>
           <Edit />
@@ -91,7 +92,7 @@ const Profile = () => {
           {editableName ? (
             <TextField
               fullWidth
-              defaultValue={me.name}
+              defaultValue={user.me.name}
               onChange={event => setNameText(event.target.value)}
               onBlur={changeName}
               InputProps={{
@@ -102,25 +103,25 @@ const Profile = () => {
             />
           ) : (
             <BoxName>
-              <h2>{me.name}</h2>
+              <h2>{user.me && user.me.name}</h2>
               <Edit onClick={() => setEditableName(true)} />
             </BoxName>
           )}
-          <span>{me.nickname}</span>
+          <span>{user.me.nickname}</span>
         </InfoName>
 
-        <InfoBio>{me.bio}</InfoBio>
+        <InfoBio>{user.me.bio}</InfoBio>
 
         <BoxIconInfo>
-          <Room /> {me.address}
+          <Room /> {user.me.link}
         </BoxIconInfo>
 
         <BoxIconInfo>
-          <Link /> {me.link}
+          <Link /> {user.me.link}
         </BoxIconInfo>
 
         <BoxIconInfo>
-          <QueryBuilder /> <ReactTimeAgo date={me.joined} format="twitter" />
+          <QueryBuilder /> {user.me.joined && <ReactTimeAgo date={user.me.joined} format="twitter" />}
         </BoxIconInfo>
       </BoxDetail>
     </>

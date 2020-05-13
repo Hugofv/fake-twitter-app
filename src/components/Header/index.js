@@ -86,15 +86,15 @@ const Header = () => {
    * Effect to close modal when the upload image is concluded.
    */
   useEffect(() => {
-    if ((!user.me.loading, user.me.success)) {
+    if ((!user.loading, user.success)) {
       setOpen(false);
     }
-  }, [user.me.loading, user.me.success]);
+  }, [user.loading, user.success]);
 
   return (
     <HeaderContainer>
       <Grid container>
-        <CoverPicture xs={12} img={user.me.imageCover}>
+        <CoverPicture xs={12} img={(user.me && user.me.imageCover) || require('../../assets/img/cover-default.jpg')}>
           <BoxEdit onClick={() => setOpen(true)}>
             <Edit />
           </BoxEdit>

@@ -1,12 +1,13 @@
+import * as UserActions from './../../store/modules/user/actions';
+
 import Alert from './../../components/Alert';
 import { GlobalStyle } from './styles';
-import { Provider } from 'react-redux';
-import React from 'react';
+import { Provider, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import Routes from './routes';
 import { ThemeProvider } from '@material-ui/core';
 import history from '../../services/history';
-import store from './../../store';
 import theme from './theme';
 import JavascriptTimeAgo from 'javascript-time-ago';
 
@@ -17,16 +18,20 @@ JavascriptTimeAgo.locale(pt);
 JavascriptTimeAgo.locale(en);
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(UserActions.getMe('868a67dc-df50-4fe8-aa07-7190f6537936'));
+  }, []);
+
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Router history={history}>
-          <GlobalStyle />
-          <Alert />
-          <Routes />
-        </Router>
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Router history={history}>
+        <GlobalStyle />
+        <Alert />
+        <Routes />
+      </Router>
+    </ThemeProvider>
   );
 };
 

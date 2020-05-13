@@ -30,7 +30,6 @@ const TextSecondary = {
 
 const Tweets = ({ tweetar, tweet, user }) => {
   const { t } = useTranslation();
-
   const [tweetText, setTweetText] = useState('');
 
   return (
