@@ -13,6 +13,8 @@ import {
   ListItemText,
   Tabs,
   Tab,
+  Menu,
+  MenuItem,
 } from '@material-ui/core';
 import React, { useRef, useState, useEffect } from 'react';
 
@@ -23,8 +25,10 @@ import {
   HeaderContainer,
   PaperActions,
   ListStyled,
+  BoxTabs,
+  BoxConfig,
 } from './styles';
-import { Edit } from '@material-ui/icons';
+import { Edit, Language } from '@material-ui/icons';
 import ProfilePicture from '../ProfilePicture';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -33,6 +37,7 @@ import {
   TAB_FOLLOWING,
   TAB_FOLLOWERS,
 } from '../../contants';
+import JavascriptTimeAgo from 'javascript-time-ago';
 
 const TextPrimary = {
   style: {
@@ -63,10 +68,29 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const refPicture = useRef();
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openPopover = Boolean(anchorEl);
 
+  /**
+   * Open menu with options the language
+   */
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  /**
+   * Close menu with options the language
+   */
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  /**
+   * Change Tab in Menu.
+   */
   const handleChangeTab = (event, newValue) => {
     dispatch(AppActions.changeTab(newValue));
   };
@@ -82,6 +106,10 @@ const Header = () => {
     dispatch(UserActions.changeCoverImage(dataURL));
   };
 
+  const changeLanguage = lng => {
+    i18n.changeLanguage(lng);
+  };
+
   /**
    * Effect to close modal when the upload image is concluded.
    */
@@ -91,77 +119,119 @@ const Header = () => {
     }
   }, [user.loading, user.success]);
 
+  /**
+   * Effect to get following and follower.
+   */
   useEffect(() => {
-    dispatch(UserActions.fetchFollowing())
-    dispatch(UserActions.fetchFollower())
-  }, [])
+    dispatch(UserActions.fetchFollowing());
+    dispatch(UserActions.fetchFollower());
+  }, []);
 
   return (
     <HeaderContainer>
       <Grid container>
-        <CoverPicture xs={12} img={(user.me && user.me.imageCover) || require('../../assets/img/cover-default.jpg')}>
+        <CoverPicture
+          xs={12}
+          img={
+            (user.me && user.me.imageCover) ||
+            require('../../assets/img/cover-default.jpg')
+          }
+        >
           <BoxEdit onClick={() => setOpen(true)}>
             <Edit />
           </BoxEdit>
         </CoverPicture>
         <Grid xs={12}>
           <PaperActions>
-            <Tabs
-              value={app.currentTab}
-              onChange={handleChangeTab}
-              indicatorColor="primary"
-              textColor="primary"
-              aria-label="simple tabs example"
-              centered
-            >
-              <Tab
-                label={
-                  <ListItemText
-                    primaryTypographyProps={TextPrimary}
-                    secondaryTypographyProps={TextSecondary}
-                    primary={t('common.tweets')}
-                    secondary={tweet.collection.length}
-                  />
-                }
-                {...a11yProps(TAB_TWEETS)}
+            <BoxTabs>
+              <Tabs
+                value={app.currentTab}
+                onChange={handleChangeTab}
+                indicatorColor="primary"
+                textColor="primary"
+                aria-label="simple tabs example"
+                centered
+              >
+                <Tab
+                  label={
+                    <ListItemText
+                      primaryTypographyProps={TextPrimary}
+                      secondaryTypographyProps={TextSecondary}
+                      primary={t('common.tweets')}
+                      secondary={tweet.collection.length}
+                    />
+                  }
+                  {...a11yProps(TAB_TWEETS)}
+                />
+                <Tab
+                  label={
+                    <ListItemText
+                      primaryTypographyProps={TextPrimary}
+                      secondaryTypographyProps={TextSecondary}
+                      primary={t('common.photos_videos')}
+                      secondary={user.photosVideos.length}
+                    />
+                  }
+                  {...a11yProps(TAB_PHOTOS_VIDEOS)}
+                />
+                <Tab
+                  label={
+                    <ListItemText
+                      primaryTypographyProps={TextPrimary}
+                      secondaryTypographyProps={TextSecondary}
+                      primary={t('common.following')}
+                      secondary={user.following.length}
+                    />
+                  }
+                  {...a11yProps(TAB_FOLLOWING)}
+                />
+                <Tab
+                  label={
+                    <ListItemText
+                      primaryTypographyProps={TextPrimary}
+                      secondaryTypographyProps={TextSecondary}
+                      primary={t('common.followers')}
+                      secondary={user.followers.length}
+                    />
+                  }
+                  {...a11yProps(TAB_FOLLOWERS)}
+                />
+              </Tabs>
+            </BoxTabs>
+            <BoxConfig>
+              <Language
+                aria-label="account of current user"
+                aria-controls="language"
+                aria-haspopup="true"
+                onClick={handleMenu}
               />
-              <Tab
-                label={
-                  <ListItemText
-                    primaryTypographyProps={TextPrimary}
-                    secondaryTypographyProps={TextSecondary}
-                    primary={t('common.photos_videos')}
-                    secondary={user.photosVideos.length}
-                  />
-                }
-                {...a11yProps(TAB_PHOTOS_VIDEOS)}
-              />
-              <Tab
-                label={
-                  <ListItemText
-                    primaryTypographyProps={TextPrimary}
-                    secondaryTypographyProps={TextSecondary}
-                    primary={t('common.following')}
-                    secondary={user.following.length}
-                  />
-                }
-                {...a11yProps(TAB_FOLLOWING)}
-              />
-              <Tab
-                label={
-                  <ListItemText
-                    primaryTypographyProps={TextPrimary}
-                    secondaryTypographyProps={TextSecondary}
-                    primary={t('common.followers')}
-                    secondary={user.followers.length}
-                  />
-                }
-                {...a11yProps(TAB_FOLLOWERS)}
-              />
-            </Tabs>
+            </BoxConfig>
           </PaperActions>
         </Grid>
       </Grid>
+
+      <Menu
+        id="language"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={openPopover}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={() => changeLanguage('ptBR')}>
+          {t('common.portugues_brasil')}
+        </MenuItem>
+        <MenuItem onClick={() => changeLanguage('enUS')}>
+          {t('common.english')}
+        </MenuItem>
+      </Menu>
 
       <Dialog open={open} fullWidth maxWidth="lg">
         <DialogContent>

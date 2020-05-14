@@ -47,3 +47,16 @@ export const ListStyled = styled(List)`
     cursor: pointer;
   }
 `;
+
+export const BoxTabs = styled.div`
+  width: 90%;
+`;
+
+export const BoxConfig = styled.div`
+  display: flex;
+  align-items: center;
+
+  > svg {
+    cursor: pointer;
+  }
+`

@@ -7,6 +7,11 @@ import {
 import api from '../../../services/api';
 import moment from 'moment';
 
+/**
+ * Create post of tweet.
+ *
+ * @param {String} tweet
+ */
 export const tweetar = tweet => (dispatch, getState) => {
   dispatch({
     type: ADD_TWEET_REQUEST
@@ -23,6 +28,9 @@ export const tweetar = tweet => (dispatch, getState) => {
   });
 };
 
+/**
+ * Get tweets's the user.
+ */
 export const fetchTweets = () => (dispatch, getState) => {
   api.get('/tweets?_sort=createdAt&_order=desc').then(({ data }) => {
     dispatch({

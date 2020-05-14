@@ -1,6 +1,5 @@
 import * as UserActions from './../../store/modules/user/actions';
 
-import Alert from './../../components/Alert';
 import { GlobalStyle } from './styles';
 import { Provider, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
@@ -14,8 +13,10 @@ import JavascriptTimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import pt from 'javascript-time-ago/locale/pt';
 
-JavascriptTimeAgo.locale(pt);
-JavascriptTimeAgo.locale(en);
+JavascriptTimeAgo.addLocale(en);
+JavascriptTimeAgo.addLocale(pt);
+
+JavascriptTimeAgo.setDefaultLocale('pt-br');
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router history={history}>
         <GlobalStyle />
-        <Alert />
         <Routes />
       </Router>
     </ThemeProvider>

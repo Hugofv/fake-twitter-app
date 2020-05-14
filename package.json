@@ -1,7 +1,4 @@
 {
-  "engines": {
-    "node": "10.19.0"
-  },
   "name": "fake-twitter",
   "version": "0.1.0",
   "private": true,
