@@ -1,7 +1,7 @@
 import * as UserActions from './../../store/modules/user/actions';
 
 import { GlobalStyle } from './styles';
-import { Provider, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import Routes from './routes';

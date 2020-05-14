@@ -3,7 +3,6 @@ import * as TweetActions from './../../store/modules/tweet/actions';
 
 import Page from '../../components/Page';
 import { Box, Typography } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   TAB_TWEETS,
@@ -34,18 +33,27 @@ function TabPanel(props) {
   );
 }
 
+/**
+ * Cotainer's Home
+ */
 const Home = () => {
-  const { t } = useTranslation();
-
   const user = useSelector(state => state.user);
   const tweet = useSelector(state => state.tweet);
   const app = useSelector(state => state.app);
   const dispatch = useDispatch();
 
+  /**
+   * Function for dispatch new tweet post.
+   *
+   * @param {String} tweetText
+   */
   const tweetar = tweetText => {
     dispatch(TweetActions.tweetar(tweetText));
   };
 
+  /**
+   * Effect for get all tweets's user logged.
+   */
   useEffect(() => {
     dispatch(TweetActions.fetchTweets());
   }, []);

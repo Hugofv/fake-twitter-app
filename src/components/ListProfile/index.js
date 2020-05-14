@@ -17,6 +17,11 @@ const ListProfile = ({ users }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  /**
+   * Function for dispatch to add following.
+   *
+   * @param {Object} user
+   */
   const addFollowing = user => {
     dispatch(UserActions.addFollowing(user));
   };
@@ -26,7 +31,7 @@ const ListProfile = ({ users }) => {
       <List>
         {users.map(user => (
           <>
-            <ListItem alignItems="flex-start">
+            <ListItem key={user.id} alignItems="flex-start">
               <ListItemAvatar>
                 <AvatarStyled
                   alt="Remy Sharp"

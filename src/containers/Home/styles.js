@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextField, Divider, Typography, Avatar } from '@material-ui/core';
+import { TextField, Divider, Typography } from '@material-ui/core';
 
 export const TweetInput = styled(TextField)`
   > div {

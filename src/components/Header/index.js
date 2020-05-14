@@ -7,9 +7,6 @@ import {
   DialogContent,
   Button,
   DialogActions,
-  Paper,
-  List,
-  ListItem,
   ListItemText,
   Tabs,
   Tab,
@@ -24,7 +21,6 @@ import {
   BoxEdit,
   HeaderContainer,
   PaperActions,
-  ListStyled,
   BoxTabs,
   BoxConfig,
 } from './styles';
@@ -37,7 +33,6 @@ import {
   TAB_FOLLOWING,
   TAB_FOLLOWERS,
 } from '../../contants';
-import JavascriptTimeAgo from 'javascript-time-ago';
 
 const TextPrimary = {
   style: {

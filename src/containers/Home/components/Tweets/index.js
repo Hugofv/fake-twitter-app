@@ -81,7 +81,7 @@ const Tweets = ({ tweetar, tweet, user, loading, success }) => {
       <List>
         {tweet.collection.map(item => (
           <>
-            <ListItem alignItems="flex-start">
+            <ListItem key={item.id} alignItems="flex-start">
               <ListItemAvatar>
                 <AvatarStyled
                   variant="rounded"

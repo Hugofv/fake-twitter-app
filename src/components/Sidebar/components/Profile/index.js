@@ -12,7 +12,7 @@ import {
   BoxName,
   CloseIcon,
 } from './styles';
-import { Room, Link, QueryBuilder, Edit, Close } from '@material-ui/icons';
+import { Room, Link, QueryBuilder, Edit } from '@material-ui/icons';
 import {
   Dialog,
   DialogActions,
@@ -25,6 +25,9 @@ import ProfilePicture from '../../../ProfilePicture';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTimeAgo from 'react-time-ago/commonjs/ReactTimeAgo';
 
+/**
+ * Box for information the user logged.
+ */
 const Profile = () => {
   const { t } = useTranslation();
 
@@ -36,6 +39,9 @@ const Profile = () => {
   const [nameText, setNameText] = useState('');
   const [editableName, setEditableName] = useState(false);
 
+  /**
+   * Function for dispatch event to change image profile the user logged.
+   */
   const handleUpload = () => {
     const editor = refPicture.current;
     const canvas = editor.getImageScaledToCanvas();
@@ -44,6 +50,9 @@ const Profile = () => {
     dispatch(UserActions.changeProfileImage(dataURL));
   };
 
+  /**
+   * Function for dispatch event to change name the user logged.
+   */
   const changeName = () => {
     dispatch(UserActions.changeName(nameText));
   }

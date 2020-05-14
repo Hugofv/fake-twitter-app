@@ -14,7 +14,6 @@ import {
   FETCH_FOLLOWER_SUCCESS,
 } from './types';
 import api from '../../../services/api';
-import _ from 'lodash';
 
 /**
  * Get user logged.
